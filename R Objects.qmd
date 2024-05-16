@@ -1,0 +1,93 @@
+---
+title: "R Objects Workflow and Functions"
+format: html
+editor: visual
+---
+# Vectors
+Create a vector. 
+```{r}
+set.seed(1)
+myunif <- runif(30)
+myunif
+is.vector(myunif)
+```
+Subset the vector.
+```{r}
+myunif[1:10]
+myunif[c(1:3, 15:17)]
+```
+
+Sort the vector. 
+
+```{r}
+sort(myunif)
+```
+Create a character string vector.
+
+```{r}
+charvec <- c("alligator", "crocodile", "banana", "12d")
+sort(charvec)
+```
+
+# Data Frames
+
+```{r}
+data(trees)
+trees
+str(trees)
+trees$Height
+```
+
+Get column names
+```{r}
+attributes(trees)
+names(trees)
+columnnames <- colnames(trees)
+colnames(trees)[2:3]
+colnames(trees)[-2]
+str(columnnames)
+```
+# Lists
+
+Investigate data frame (actually lists underneath)
+
+```{r}
+is.list(trees)
+is.data.frame(trees)
+```
+
+Can subset as a list
+
+```{r}
+preservedtrees <-trees[1]
+str(preservedtrees)
+simplifiedtrees<-trees[[1]]
+str(simplifiedtrees)
+trees[1:2]
+trees[[1:2]]
+```
+
+Look at linear model fit. 
+
+```{r}
+fit <- lm(Volume ~ Height + Girth, data=trees)
+str(fit)
+```
+
+Look at structure but restrict amount of information shown.
+
+```{r}
+str(fit, max.level=1)
+```
+Some helper functions. No helper function for rank.
+
+```{r}
+fit$coefficients
+coef(fit)
+fit$residuals
+resid(fit)
+```
+
+
+
+
